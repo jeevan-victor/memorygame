@@ -31,12 +31,18 @@ document.getElementById("start-button").addEventListener("click", function() {
 document.getElementById("enter-button").addEventListener("click", function() {
     inputNumber = document.getElementById("input-number").value;
     inputNumber = parseInt(document.getElementById("input-number").value);
+    
     console.log(inputNumber);
 
     if (inputNumber === randomNumber){
-        console.log("win");
-    } else console.log ("lose");
-}
+        document.getElementById("input-page").style.display = "none";
+        //document.getElementById("wrong-page").style.display = "none";
+          document.getElementById("correct-page").style.display = "block";
+        //console.log("win");
+    } else {document.getElementById("input-page").style.display = "none";
+    document.getElementById("wrong-page").style.display = "block";
+    //console.log ("lose");
+}}
 
 );
    
