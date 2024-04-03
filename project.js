@@ -5,8 +5,11 @@ let countdownElement = document.getElementById("countdown");
     let randomNumber = generateNumber(8);
     let inputNumber;
     let clickCount = 0; // Track the number of times the "try again" button is clicked
-   
-
+    let username;
+document.getElementById("submit").onclick = function(){
+    username = document.getElementById("userName").value;
+    console.log(username);
+}
 
     //Start game page
 document.getElementById("start-button").addEventListener("click", function() {
@@ -86,10 +89,12 @@ document.getElementById("try-again").addEventListener("click", function() {
     
     // Display game over page if click count reaches 3
     if (clickCount === 3) {
+
+        
         
         document.getElementById("wrong-page").style.display = "none";
         document.getElementById("gameover-page").style.display = "block";
-        
+      
     } else {
         // Otherwise, continue the game
         let randomNumber = generateNumber(8);
@@ -123,5 +128,6 @@ function generateNumber(a) {
     let randomNum = Math.floor(Math.random() * max);
     return randomNum;
 }
+
 
 
