@@ -1,10 +1,12 @@
-
 let countdownElement = document.getElementById("countdown");
     let count = 5;
     countdownElement.textContent = "Time remaining: " + count;
 
-    let randomNumber = generateNumber();
+    let randomNumber = generateNumber(8);
     let inputNumber;
+    let clickCount = 0; // Track the number of times the "try again" button is clicked
+   
+
 
     //Start game page
 document.getElementById("start-button").addEventListener("click", function() {
@@ -45,18 +47,17 @@ document.getElementById("enter-button").addEventListener("click", function() {
 }});
    
 // Correct number
+document.getElementById("continue").addEventListener("click", function() {
 
+    // Increase the length of the random number
+    randomNumber = generateNumber(randomNumber.toString(8).length + 1);
 
+    // Display the new random number
+    document.getElementById("random-number").textContent = randomNumber;
 
-
-
-
-
-
-// Wrong number
-document.getElementById("try-again").addEventListener("click", function() {
-    document.getElementById("wrong-page").style.display = "none";
+    document.getElementById("correct-page").style.display = "none";
     document.getElementById("guessnumber-page").style.display = "block";
+   
     
     count = 5;
     countdownElement.textContent = "Time remaining: " + count;
@@ -78,12 +79,49 @@ document.getElementById("try-again").addEventListener("click", function() {
 
 
 
+// Wrong number
+document.getElementById("try-again").addEventListener("click", function() {
+    // Increase click count
+    clickCount++;  
+    
+    // Display game over page if click count reaches 3
+    if (clickCount === 3) {
+        
+        document.getElementById("wrong-page").style.display = "none";
+        document.getElementById("gameover-page").style.display = "block";
+        
+    } else {
+        // Otherwise, continue the game
+        let randomNumber = generateNumber(8);
 
-function generateNumber() {
-    let randomNum = Math.random() * 100000000;
-    randomNum = Math.floor(randomNum);
+        // Display the new random number
+        document.getElementById("random-number").textContent = randomNumber;
+
+        document.getElementById("wrong-page").style.display = "none";
+        document.getElementById("guessnumber-page").style.display = "block";
+
+        count = 5;
+        countdownElement.textContent = "Time remaining: " + count;
+
+        countdownInterval = setInterval(function() {
+            count--;
+            countdownElement.textContent = "Time remaining: " + count;
+            if (count === 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("guessnumber-page").style.display = "none";
+                document.getElementById("input-page").style.display = "block";
+            }
+        }, 1000);
+    }
+});
+
+
+
+//Function to generate a random number 
+function generateNumber(a) {
+    let max = Math.pow(10, a) - 1;
+    let randomNum = Math.floor(Math.random() * max);
     return randomNum;
-  }
+}
 
 
-  
