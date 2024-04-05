@@ -3,10 +3,11 @@ let count = 5;
 countdownElement.textContent = "Time remaining: " + count;
 
 let randomNumber = generateNumber();
+let randomNumberMedium
 let inputNumber;
 let username;
 let wrongGuess = 0;
-
+let highScore = 0;
 
 document.getElementById("submit").onclick = function(){
 username = document.getElementById("userName").value;
@@ -15,15 +16,18 @@ console.log(username);
 
 document.getElementById("easy-button").addEventListener("click", function() {
     randomNumber = generateNumber(4);
+    increment = 1;
     startGame();
     });
     document.getElementById("medium-button").addEventListener("click", function() {
         randomNumber = generateNumber(6);
-    startGame();
+        increment = 2;
+        startGame();
 });
     document.getElementById("hard-button").addEventListener("click", function() {
         randomNumber = generateNumber(8)
-    startGame();
+        increment = 3;
+       startGame();
 });
 
 
@@ -48,7 +52,7 @@ let countdownInterval = setInterval(function() {
 
 //User input page
 document.getElementById("enter-button").addEventListener("click", function() {
-inputNumber = document.getElementById("input-number").value;
+
 inputNumber = parseInt(document.getElementById("input-number").value);
 
 console.log("input",inputNumber);
@@ -58,6 +62,10 @@ if (inputNumber === randomNumber){
     document.getElementById("input-page").style.display = "none";
     document.getElementById("correct-page").style.display = "block";
 
+if (inputNumber.toString().length > highScore) {
+        highScore = inputNumber.toString().length;
+}
+document.getElementById("highscore").textContent = "High Score: " + highScore;
 //console.log("win");
 } else {
 document.getElementById("input-page").style.display = "none";
@@ -69,7 +77,7 @@ document.getElementById("wrong-page").style.display = "block";
 document.getElementById("continue").addEventListener("click", function() {
 
 // Increase the length of the random number
-randomNumber = generateNumber(randomNumber.toString().length + 1);
+randomNumber = generateNumber(randomNumber.toString().length + increment);
 
 // Display the new random number
 document.getElementById("random-number").textContent = randomNumber;
