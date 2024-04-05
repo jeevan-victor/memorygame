@@ -8,10 +8,13 @@ let inputNumber;
 let username;
 let wrongGuess = 0;
 let highScore = 0;
+let playerUsername = ""; 
+
 
 document.getElementById("submit").onclick = function(){
-username = document.getElementById("userName").value;
-console.log(username);
+    username = document.getElementById("userName").value;
+    playerUsername = username;
+    console.log(username);
 }
 
 document.getElementById("easy-button").addEventListener("click", function() {
@@ -62,10 +65,13 @@ if (inputNumber === randomNumber){
     document.getElementById("input-page").style.display = "none";
     document.getElementById("correct-page").style.display = "block";
 
+    // Update high score 
 if (inputNumber.toString().length > highScore) {
-        highScore = inputNumber.toString().length;
+    highScore = inputNumber.toString().length;
+    updateHighScore(); 
+        
 }
-document.getElementById("highscore").textContent = "High Score: " + highScore;
+
 //console.log("win");
 } else {
 document.getElementById("input-page").style.display = "none";
@@ -146,4 +152,7 @@ function generateNumber(a) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     
-    
+// Function to update the high score 
+    function updateHighScore() {
+    document.getElementById("highscore").textContent = highScore + " digits guessed correctly by " + playerUsername;
+    }
