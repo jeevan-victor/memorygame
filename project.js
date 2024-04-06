@@ -3,10 +3,9 @@ let count = 5;
 countdownElement.textContent = "Time remaining: " + count;
 
 let randomNumber = generateNumber();
-let randomNumberMedium
 let inputNumber;
 let username;
-let wrongGuess = 0;
+let wrongGuess = 1;
 let highScore = 0;
 let playerUsername = ""; 
 
@@ -65,12 +64,20 @@ if (inputNumber === randomNumber){
     document.getElementById("input-page").style.display = "none";
     document.getElementById("correct-page").style.display = "block";
 
+
     // Update high score 
 if (inputNumber.toString().length > highScore) {
     highScore = inputNumber.toString().length;
     updateHighScore(); 
         
 }
+
+if(highScore >=15) {
+    document.getElementById("input-page").style.display = "none";
+    document.getElementById("correct-page").style.display = "none";
+    document.getElementById("winning-page").style.display = "block";
+    winningPage();
+ }  
 
 //console.log("win");
 } else {
@@ -112,7 +119,13 @@ countdownInterval = setInterval(function() {
 // Wrong number 
 document.getElementById("try-again").addEventListener("click", function() {
     
-    if (wrongGuess < 2) {
+
+    if (wrongGuess === 3) {
+        // Go to game over page
+        document.getElementById("guessnumber-page").style.display = "none";
+        document.getElementById("wrong-page").style.display = "none";
+        document.getElementById("gameover-page").style.display = "block";
+    } else {
 
     
     randomNumber = generateNumber(randomNumber.toString().length);
@@ -134,15 +147,10 @@ document.getElementById("try-again").addEventListener("click", function() {
             document.getElementById("input-page").style.display = "block";
         }
     }, 1000);
-} else {
-    // Go to game over page
-    document.getElementById("guessnumber-page").style.display = "none";
-    document.getElementById("wrong-page").style.display = "none";
-    document.getElementById("gameover-page").style.display = "block";
-}
+
 wrongGuess++;
     
-});
+}});
 
 
 //Function to generate a random number 
@@ -156,3 +164,8 @@ function generateNumber(a) {
     function updateHighScore() {
     document.getElementById("highscore").textContent = highScore + " digits guessed correctly by " + playerUsername;
     }
+
+    //
+    function winningPage() {
+        document.getElementById("winner").textContent = "Congratulations " + playerUsername + " you have guessed 15 digits correctly";
+        }
