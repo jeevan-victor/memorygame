@@ -21,7 +21,7 @@ https://memorygame-one-kappa.vercel.app/project.html
 ## Playing the game
 The player is allowed to choose between 3 difficulty levels.
 
-![alt text](image.png)
+![alt text](image-3.png)
 
     - Easy: The random number starts with 4 digits, and is incrememted by 1.
 
@@ -34,11 +34,11 @@ The player is allowed to choose between 3 difficulty levels.
     - If the player gets the number wrong, there is no increment.
     
 
-![alt text](image-1.png)
+![alt text](image-11.png)
 
 The Javascript code snippet of the different difficulty levels
 
-![alt text](image-2.png)
+![alt text](image-12.png)
 
 
 If the number is enter correctly,
@@ -53,15 +53,15 @@ The player continues with a longer set of numbers,
 
 If the number is wrong, the player tries again with the same number of digits.
 
-![alt text](image-7.png)
+![alt text](image-2.png)
 
 If the player manages to guess 15 digits correctly, they automatically win the game with thier username reflected.
 
-![alt text](image-8.png)
+![alt text](image-1.png)
 
 If the player uses up all 3 attempts, the game is over, reflecting the best score of the player.
 
-![alt text](image-9.png)
+![alt text](image.png)
 
 
 ## Future Enhancements
