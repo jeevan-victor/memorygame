@@ -35,12 +35,12 @@ document.getElementById("easy-button").addEventListener("click", function() {
 
 function startGame() {
 
-//Random Number page
+
 document.getElementById("random-number").textContent = randomNumber;
 document.getElementById("start-page").style.display = "none";
 document.getElementById("guessnumber-page").style.display = "block";
 
-//Countdown Timer
+
 let countdownInterval = setInterval(function() {
   count--;
   countdownElement.textContent = "Time remaining: " + count;
@@ -52,7 +52,7 @@ let countdownInterval = setInterval(function() {
 }, 1000);
 };
 
-//User input page
+
 document.getElementById("enter-button").addEventListener("click", function() {
 
 inputNumber = parseInt(document.getElementById("input-number").value);
@@ -65,7 +65,7 @@ if (inputNumber === randomNumber){
     document.getElementById("correct-page").style.display = "block";
 
 
-    // Update high score 
+    
 if (inputNumber.toString().length > highScore) {
     highScore = inputNumber.toString().length;
     updateHighScore(); 
@@ -79,20 +79,20 @@ if(highScore >=15) {
     winningPage();
  }  
 
-//console.log("win");
+
 } else {
 document.getElementById("input-page").style.display = "none";
 document.getElementById("wrong-page").style.display = "block";
-//console.log ("lose");
+
 }});
 
-// Correct number 
+
 document.getElementById("continue").addEventListener("click", function() {
 
-// Increase the length of the random number
+
 randomNumber = generateNumber(randomNumber.toString().length + increment);
 
-// Display the new random number
+
 document.getElementById("random-number").textContent = randomNumber;
 
 document.getElementById("correct-page").style.display = "none";
@@ -116,12 +116,12 @@ countdownInterval = setInterval(function() {
 });
 
 
-// Wrong number 
+
 document.getElementById("try-again").addEventListener("click", function() {
     
 
     if (wrongGuess === 3) {
-        // Go to game over page
+        
         document.getElementById("guessnumber-page").style.display = "none";
         document.getElementById("wrong-page").style.display = "none";
         document.getElementById("gameover-page").style.display = "block";
@@ -130,7 +130,7 @@ document.getElementById("try-again").addEventListener("click", function() {
     
     randomNumber = generateNumber(randomNumber.toString().length);
 
-    // Display the new random number
+    
     document.getElementById("random-number").textContent = randomNumber;
      document.getElementById("wrong-page").style.display = "none";
     document.getElementById("guessnumber-page").style.display = "block";
@@ -153,19 +153,18 @@ wrongGuess++;
 }});
 
 
-//Function to generate a random number 
+
 function generateNumber(a) {
     let min = Math.pow(10, a - 1); 
     let max = Math.pow(10, a) - 1; 
     return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     
-// Function to update the high score 
+
     function updateHighScore() {
     document.getElementById("highscore").textContent = highScore + " digits guessed correctly by " + playerUsername;
     }
 
-    //
     function winningPage() {
-        document.getElementById("winner").textContent = "Congratulations " + playerUsername + " you have guessed 15 digits correctly";
+        document.getElementById("winner").textContent = "Congratulations! " + playerUsername + ", you have guessed 15 digits correctly";
         }

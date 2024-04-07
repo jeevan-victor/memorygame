@@ -1,0 +1,39 @@
+body {
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+}
+
+#random-number {
+    font-size: 24px;
+}
+
+#correct-page {
+    color: green;
+    
+}
+
+#wrong-page {
+    color: red;
+    
+}
+
+#winning-page {
+    color: green;
+}
+
+#winner {
+    color: black;
+    font-size: 20px;
+}
+
+#gameover-page {
+    color: red;
+}
+
+#highscore {
+    color: black;
+    font-size: 20px;
+}
