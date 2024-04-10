@@ -117,8 +117,22 @@ countdownInterval = setInterval(function() {
 
 
 
-document.getElementById("try-again").addEventListener("click", function() {
+document.getElementById("new-number").addEventListener("click", function(){
+    randomNumber = generateNumber(randomNumber.toString().length);
+    tryAgain();
+});
+
+document.getElementById("same-number").addEventListener("click", function(){
+    randomNumber;
+    tryAgain();
+});
+
+document.getElementById("less-digit").addEventListener("click", function(){
+    randomNumber = generateNumber(randomNumber.toString().length -1);
+    tryAgain();
+});
     
+    function tryAgain() {
 
     if (wrongGuess === 3) {
         
@@ -126,9 +140,6 @@ document.getElementById("try-again").addEventListener("click", function() {
         document.getElementById("wrong-page").style.display = "none";
         document.getElementById("gameover-page").style.display = "block";
     } else {
-
-    
-    randomNumber = generateNumber(randomNumber.toString().length);
 
     
     document.getElementById("random-number").textContent = randomNumber;
@@ -150,7 +161,7 @@ document.getElementById("try-again").addEventListener("click", function() {
 
 wrongGuess++;
     
-}});
+}};
 
 
 
